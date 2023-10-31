@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+
+    <!-- Add a new task -->
+    <form action="" method="post">
+        <input type="text" name="task_name" placeholder="Task Name" required>
+        <select name="status">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+        <input type="hidden" name="action" value="create">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- List of all tasks -->
+    <ul>
+        <?php foreach ($tasks as $task): ?>
+        <li>
+            <?php echo $task['task_name']; ?>
+            - Status: <?php echo $task['status']; ?>
+            <form action="" method="post">
+                <input type="text" name="task_name" placeholder="New Task Name" required>
+                <select name="status">
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
+                <input type="hidden" name="action" value="update">
+                <button type="submit">Update</button>
+            </form>
+            <form action="" method="post">
+                <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
