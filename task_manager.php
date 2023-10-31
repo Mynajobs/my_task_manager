@@ -1,8 +1,8 @@
 <?php
 // Database connection
-$host = 'localhost'; // Change to your database host
-$username = 'Amina'; // Change to your database username
-$password = 'Myna1234!'; // Change to your database password
+$host = 'localhost'; // database host
+$username = 'Amina'; // database username
+$password = 'Myna1234!'; // database password
 $database = 'task_manager';
 
 $conn = mysqli_connect($host, $username , $password, $database);
@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Create a new task
+// Creating a new task
 function createTask($task_name, $status) {
     global $conn;
     $task_name = mysqli_real_escape_string($conn, $task_name);
