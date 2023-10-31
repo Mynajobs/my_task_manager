@@ -5,13 +5,13 @@ $username = 'Amina'; // Change to your database username
 $password = 'Myna1234!'; // Change to your database password
 $database = 'task_manager';
 
-$conn = mysqli_connect('localhost', 'root', " ", 'task_manager');
+$conn = mysqli_connect($host, $username , $password, $database);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Function to create a new task
+// Create a new task
 function createTask($task_name, $status) {
     global $conn;
     $task_name = mysqli_real_escape_string($conn, $task_name);
@@ -21,7 +21,7 @@ function createTask($task_name, $status) {
     return mysqli_query($conn, $sql);
 }
 
-// Function to retrieve and display a list of all tasks
+// Retrieve and display a list of tasks
 function getTasks() {
     global $conn;
     $sql = "SELECT * FROM tasks";
@@ -33,7 +33,7 @@ function getTasks() {
     return $tasks;
 }
 
-// Function to update the status or description of a task
+// Updating the status or description of a task
 function updateTask($id, $task_name, $status) {
     global $conn;
     $id = (int)$id;
@@ -44,7 +44,7 @@ function updateTask($id, $task_name, $status) {
     return mysqli_query($conn, $sql);
 }
 
-// Function to delete a task
+// Deleting a task
 function deleteTask($id) {
     global $conn;
     $id = (int)$id;
@@ -72,6 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Retrieve and display tasks
+// Displaying tasks
 $tasks = getTasks();
 ?>
